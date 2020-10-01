@@ -1,10 +1,10 @@
-import { AngularCliHerokuPage } from './app.po';
+import { AngularCliHerokuBoilerplatePage } from './app.po';
 
-describe('angular-cli-heroku App', () => {
-  let page: AngularCliHerokuPage;
+describe('angular-cli-heroku-boilerplate App', () => {
+  let page: AngularCliHerokuBoilerplatePage;
 
   beforeEach(() => {
-    page = new AngularCliHerokuPage();
+    page = new AngularCliHerokuBoilerplatePage();
   });
 
   it('should display message saying app works', () => {

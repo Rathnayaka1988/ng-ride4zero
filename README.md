@@ -1,42 +1,43 @@
-# Angular-CLI-Heroku
+# Angular CLI Heroku Boilerplate
+This README outlines how to quickly deploy your Angular CLI project to Heroku.
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 1.6.4 but updated to 9.0.2
+## Prerequisites
+* [Git](http://git-scm.com/)
+* [Heroku CLI](https://devcenter.heroku.com/articles/heroku-cli)
 
-## Yarn
+## Installation
+* `git clone https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate.git <your-project-name>`
+* `cd <your-project-name>`
+* `npm install`
 
-Run `npm install -g yarn` then `yarn install`.
+## Running
+### Running locally
+* `npm start`
+* Visit your app at [http://localhost:8080](http://localhost:8080)
+  * This should be similar to my [Heroku site](https://angular-cli-heroku-boilerplate.herokuapp.com/)
 
-If you want to use npm instead of yarn, change the yarn declaraction inside package.json for `npm : "3.10.9"` and delete `yarn.lock`.
+### Deploying to Heroku
+[![Deploy](https://www.herokucdn.com/deploy/button.svg)](https://heroku.com/deploy)
 
-## Development server
+**OR**
 
-Run `ng serve` or `npm run dev` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
+* Install [Homebrew](https://brew.sh/)
+* `brew install heroku`
+* `heroku create <your-project-name>`
+* `git push heroku master`
+* `heroku open`
 
-## Code scaffolding
+## Changes Made to Original Angular CLI code
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|module`.
+* Added [`server.js`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/server.js)
+* Added `@angular/cli` to dev-dependencies in [`package.json`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/package.json)
+* Added `@angular/compiler-cli` to dev-dependencies in [`package.json`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/package.json)
+* Added `postinstall` script to [`package.json`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/package.json) that builds app for production deployment
+* Edited `start` script in [`package.json`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/package.json) to launch run [`server.js`](https://github.com/AryanJ-NYC/angular-cli-heroku-boilerplate/blob/master/server.js) instead of Angular CLI server
 
-## Deploy on Heroku
+## Support
+Like this boilerplate? Support my developments.
 
-First you need heroku toolbelt `https://devcenter.heroku.com/articles/heroku-cli#download-and-instal`.
+[![Support via PayPal](https://cdn.rawgit.com/twolfson/paypal-github-button/1.0.0/dist/button.svg)](https://www.paypal.me/AryanJ)
 
-Run `heroku create` to create a new application on Heroku.
-
-Run `npm run deploy` Heroku will handle the bundle of the application to `dist/` folder and run it via express.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `-prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-Before running the tests make sure you are serving the app via `ng serve`.
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Please star this repository to help it gain exposure.
