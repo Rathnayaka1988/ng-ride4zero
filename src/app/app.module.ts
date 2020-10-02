@@ -18,6 +18,7 @@ import { Cta1Component } from './cta1/cta1.component';
 import { Cta2Component } from './cta2/cta2.component';
 import { Cta3Component } from './cta3/cta3.component';
 import { CtaComponent } from './cta/cta.component';
+//import { AnimationComponent } from './animation/animation.component';
 //import { ParallaxDirective } from './parallax.directive';
 
 
@@ -37,6 +38,7 @@ import { CtaComponent } from './cta/cta.component';
     Cta2Component,
     Cta3Component,
     CtaComponent,
+    //AnimationComponent,
     //ParallaxDirective
   ],
   imports: [
