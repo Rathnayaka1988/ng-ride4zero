@@ -12,21 +12,21 @@ import {startWith, switchMap} from "rxjs/operators";
   styleUrls: ['./co2-panel.component.scss']
 })
 export class Co2PanelComponent implements OnInit {
-  value: number = 0;
+  value: string = "9,689";
   //totals$: Observable<Total>;
 
   constructor(private data: DataService) { }
 
   ngOnInit(): void {
-    interval(5000)
-      .pipe(
-        startWith(0),
-        switchMap(() => this.data.getTotals())
-      )
-      .subscribe(totals => {
-        //console.log("Co2PanelComponent got totals", totals);
-        this.value = Math.round(totals.carbon_g);
-      });
+    // interval(5000)
+    //   .pipe(
+    //     startWith(0),
+    //     switchMap(() => this.data.getTotals())
+    //   )
+    //   .subscribe(totals => {
+    //     //console.log("Co2PanelComponent got totals", totals);
+    //     this.value = Math.round(totals.carbon_g);
+    //   });
   }
 
 }

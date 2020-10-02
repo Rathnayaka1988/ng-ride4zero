@@ -13,20 +13,21 @@ import {startWith, switchMap} from "rxjs/operators";
   styleUrls: ['./distance-panel.component.scss']
 })
 export class DistancePanelComponent implements OnInit {
-  value: number = 0;
+  value: string = "43.8";
   //totals$: Observable<Total>;
 
   constructor(private data: DataService) { }
 
   ngOnInit(): void {
-    interval(5000)
-      .pipe(
-        startWith(0),
-        switchMap(() => this.data.getTotals())
-      )
-      .subscribe(totals => {
-        //console.log("DistancePanelComponent got totals", totals);
-        this.value = totals.distance_m;
-      });
+    // interval(5000)
+    //   .pipe(
+    //     startWith(0),
+    //     switchMap(() => this.data.getTotals())
+    //   )
+    //   .subscribe(totals => {
+    //     //console.log("DistancePanelComponent got totals", totals);
+    //     this.value = totals.distance_m;
+    //   });
+
   }
 }
