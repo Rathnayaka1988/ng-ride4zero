@@ -52,17 +52,15 @@ timeline
 var clickHandler = ('ontouchstart' in document.documentElement ? "touchstart" : "click");
 
 function getRandomXPosition(element) {
-	// var width = element.getgetBoundingClientRect().top;
-    // var randomY = Math.floor(Math.random()*height);
-    // return randomX;
-    return 200;
+	var width = element.getBoundingClientRect().right;
+    var randomX = Math.floor(Math.random()*width);
+    return randomX;
 }
 
 function getRandomYPosition(element) {
-	// var height = element.getgetBoundingClientRect().top;
-    // var randomY = Math.floor(Math.random()*height);
-    // return randomY;
-    return 200;
+	var height = element.getBoundingClientRect().bottom;
+    var randomY = Math.floor(Math.random()*height);
+    return randomY;
 }
 
 function fireCircle(element, miles) {
@@ -75,8 +73,8 @@ function fireCircle(element, miles) {
     timeline.replay();
 }
 
-document.addEventListener(clickHandler, function(element) {
-  
-    fireCircle(element, 21); // Call this from the API
+document.addEventListener(clickHandler, function(event) {
+    var clickedElement = event.target;
+    fireCircle(clickedElement, 21); // Call this from the API
 
 }, false);
