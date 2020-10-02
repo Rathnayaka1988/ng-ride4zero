@@ -1,18 +1,5 @@
 const whirlE = mojs.easing.path('M0,3.3S104.4,146.8,104.4,366.8c0,0,10.6-586.5,68.8-76.5,0,0,40.6-359.4,88.8-50,0,0,35.3-194.7,74.7-15.9,0,0,35.9-81.8,63.2,2.4');
 
-const burst = new mojs.Burst({ 
-  left: 0, top: 0,
-  radius: { 0: 100 },
-  count: 12,
-  children: {
-    shape: 'polygon',
-    radius: 20,
-    angle: { 360: 0 },
-    fill: { '#f70909' : '#eddc80' },
-    duration: 1300
-  }
-});
-
 const circle = new mojs.Shape({
   left: 0, top: 0,
   count: 10,
@@ -47,7 +34,7 @@ const whirl = new mojs.Shape({
 const timeline = new mojs.Timeline();
 
 timeline
-  .add( burst, circle, whirl );
+  .add( circle, whirl );
 
 var clickHandler = ('ontouchstart' in document.documentElement ? "touchstart" : "click");
 
@@ -63,18 +50,59 @@ function getRandomYPosition(element) {
     return randomY;
 }
 
+function getRandomYPosition(element) {
+	var height = element.getBoundingClientRect().bottom;
+    var randomY = Math.floor(Math.random()*height);
+    return randomY;
+}
+
+function getWhirlRadius(miles) {
+	if (miles > 200) {
+        return 250;
+    } else if (miles > 100) {
+        return 150;
+    } else if (miles > 50) {
+        return 80;
+    } else if (miles > 20) {
+        return 50;
+    } else if (miles > 10) {
+        return 30;
+    } else {
+        return 20;
+    }
+}
+
+function getCircleRadius(miles) {
+	if (miles > 200) {
+        return { 0: 200 };
+    } else if (miles > 100) {
+        return { 0: 100 };
+    } else if (miles > 50) {
+        return { 0: 50 };
+    } else if (miles > 20) {
+        return { 0: 20 };
+    } else if (miles > 10) {
+        return { 0: 20 };
+    } else {
+        return { 0: 10 };
+    }
+}
+
 function fireCircle(element, miles) {
-    const coords = { x: getRandomXPosition(element), y: getRandomYPosition(element) };
-  
-    burst.tune(coords);
-    circle.tune(coords);
-    whirl.tune(coords);
+    var xPosition = getRandomXPosition(element);
+    var yPosition = getRandomYPosition(element);
+    
+    const circleCoords = { x: xPosition, y: yPosition, radius: getCircleRadius(miles) };
+    const whirlCoords = { x: xPosition, y: yPosition, radius: getWhirlRadius(miles)};
+
+    circle.tune(circleCoords);
+    whirl.tune(whirlCoords);
     
     timeline.replay();
 }
 
 document.addEventListener(clickHandler, function(event) {
     var clickedElement = event.target;
-    fireCircle(clickedElement, 21); // Call this from the API
+    fireCircle(clickedElement, 5); // Call this from the API
 
 }, false);
