@@ -14,6 +14,10 @@ import { DistancePanelComponent } from './distance-panel/distance-panel.componen
 import { Co2PanelComponent } from './co2-panel/co2-panel.component';
 import { BgImageComponent } from './bg-image/bg-image.component';
 import { CopyComponent } from './copy/copy.component';
+import { Cta1Component } from './cta1/cta1.component';
+import { Cta2Component } from './cta2/cta2.component';
+import { Cta3Component } from './cta3/cta3.component';
+import { CtaComponent } from './cta/cta.component';
 
 
 
@@ -27,7 +31,11 @@ import { CopyComponent } from './copy/copy.component';
     DistancePanelComponent,
     Co2PanelComponent,
     BgImageComponent,
-    CopyComponent
+    CopyComponent,
+    Cta1Component,
+    Cta2Component,
+    Cta3Component,
+    CtaComponent
   ],
   imports: [
     BrowserModule,
