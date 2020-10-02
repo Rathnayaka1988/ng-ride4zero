@@ -1,4 +1,4 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps'
 
 @Component({
@@ -6,11 +6,11 @@ import { GoogleMap } from '@angular/google-maps'
   templateUrl: './map.component.html',
   styleUrls: ['./map.component.scss']
 })
-export class MapComponent implements OnInit {
+export class MapComponent implements AfterViewInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
 
   zoom = 3.8
-  
+
   center: google.maps.LatLngLiteral = { 
     lat: 40, 
     lng: -40,
@@ -34,15 +34,15 @@ export class MapComponent implements OnInit {
   poly = new google.maps.Polygon({
     paths: this.delims,
     strokeColor: '#FF0000',
-    strokeOpacity: 1.0,
+    strokeOpacity: 0.8,
     strokeWeight: 3,
     fillColor: '#FF0000',
-    fillOpacity: 1.0
+    fillOpacity: 0.5
   });
 
   constructor() { }
 
-  ngOnInit(): void {
+  ngAfterViewInit(): void {
     this.poly.setMap(this.map.googleMap);
   }
 
