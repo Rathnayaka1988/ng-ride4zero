@@ -7,16 +7,18 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./map.component.scss']
 })
 export class MapComponent implements OnInit {
-  zoom = 2
+  zoom = 3.8
   center: google.maps.LatLngLiteral = { 
-    lat: 0, 
-    lng: 0,
+    lat: 40, 
+    lng: -40,
   };
   options: google.maps.MapOptions = {
     //mapTypeId: 'hybrid',
     zoomControl: false,
     scrollwheel: false,
     disableDoubleClickZoom: true,
+    draggable: false,
+    disableDefaultUI: true,
   }
 
   constructor() { }

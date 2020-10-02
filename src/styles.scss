@@ -82,6 +82,12 @@ body {
   display: flex; /* or inline-flex */
 }
 
+.spacer {
+  flex-grow: 1;
+}
+
 .fullwidth {
   flex: 1 100%;
 }
+
+.floatcontainer { position: relative; }
