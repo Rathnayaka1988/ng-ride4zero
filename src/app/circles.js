@@ -6,12 +6,12 @@ const whirlE = mojs.easing.path('M0,3.3S104.4,146.8,104.4,366.8c0,0,10.6-586.5,6
 const circle = new mojs.Shape({
   left: 0, top: 0,
   count: 10,
-  stroke: { '#61c67a' : '#61c67a' },
+  stroke: { '#FF0000' : '#FF0000' },
   strokeWidth: { 20 : 0 },
   fill: 'none',
   scale: { 0: 1.5, easing: 'elastic.out' },
   radius: { 0: 20 },
-  duration: 1000,
+  duration: 2000,
   opacity:  { 1: 0.2 }
 });
 
@@ -29,7 +29,7 @@ const whirl = new mojs.Shape({
   fill: { '#e2441d' : 'yellow' },
   scale:  { 0 : 1 },
   easing: whirlE,
-  duration: 1300,
+  duration: 2600,
   opacity:  { 0: 1 },
   radius: 60
 });

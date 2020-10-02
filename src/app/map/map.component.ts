@@ -47,43 +47,69 @@ export class MapComponent implements AfterViewInit {
 
   // scale = 1;
 
-  journeyQueue: Journey[] = new Array<Journey>();
-  journeyIndex: number = 0;
+  // journeyQueue: Journey[] = new Array<Journey>();
+  // journeyIndex: number = 0;
+
+  lastDistance = 0;
+
+
 
   constructor(private data: DataService) { }
 
   ngAfterViewInit(): void {
 
-    interval(6000)
+    // interval(6000)
+    //   .pipe(
+    //     startWith(0),
+    //     switchMap(() => this.data.getJourneys())
+    //   )
+    //   .subscribe((journeys: Journey[]) => {
+    //     console.log("MapComponent got journeys", journeys);
+    //     console.log("index", this.journeyIndex, "journeys legnth", journeys.length)
+    //     for (let i = this.journeyIndex; i < journeys.length; i++) {
+    //       console.log("Pushing to queue", journeys[i])
+    //       this.journeyQueue.push(journeys[i]);
+    //     }
+
+    //     this.journeyIndex = journeys.length;
+        
+    //   });
+
+      // interval(1000)
+      // .subscribe(() => {
+      //   console.log("Queue size", this.journeyQueue.length);
+      //   const j = this.journeyQueue.shift();
+      //   console.log("Queue size after shift", this.journeyQueue.length);
+        
+      //   if (j) {
+      //     fireCircle(this.target.nativeElement, 0, 0, j.distance_m);
+      //   }
+        
+      // });
+
+    interval(10000)
       .pipe(
         startWith(0),
         switchMap(() => this.data.getJourneys())
       )
       .subscribe((journeys: Journey[]) => {
         console.log("MapComponent got journeys", journeys);
-        console.log("index", this.journeyIndex, "journeys legnth", journeys.length)
-        for (let i = this.journeyIndex; i < journeys.length; i++) {
-          console.log("Pushing to queue", journeys[i])
-          this.journeyQueue.push(journeys[i]);
+        console.log("distance", this.lastDistance, "journeys distance", journeys[0].distance_m)
+        // for (let i = this.journeyIndex; i < journeys.length; i++) {
+        //   console.log("Pushing to queue", journeys[i])
+        //   this.journeyQueue.push(journeys[i]);
+        // }
+
+        const delta = Math.abs(journeys[0].distance_m - this.lastDistance);
+        console.log("delta", delta)
+
+        if (delta > 0) {
+          fireCircle(this.target.nativeElement, 0, 0, delta);
         }
 
-        this.journeyIndex = journeys.length;
-        
+        this.lastDistance = journeys[0].distance_m;
+
       });
-
-      interval(1000)
-      .subscribe(() => {
-        console.log("Queue size", this.journeyQueue.length);
-        const j = this.journeyQueue.shift();
-        console.log("Queue size after shift", this.journeyQueue.length);
-        
-        if (j) {
-          fireCircle(this.target.nativeElement, 0, 0, j.distance_m);
-        }
-        
-      });
-
-
 
 
 
