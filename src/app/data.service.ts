@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
-import { Observable, throwError } from 'rxjs';
+import { Observable, throwError, of } from 'rxjs';
 import { catchError, retry } from 'rxjs/operators';
 
 import { Total, Journey } from './models';
@@ -21,5 +21,17 @@ export class DataService {
 
   getJourneys(): Observable<Journey[]> {
     return this.http.get<Journey[]>(URL + "/journeys");
+    // const journeys = [
+    //   {
+    //     ride_count: 0,
+    //     timestamp: "",
+    //     distance_m: 20,
+    //     duration_m: 20,
+    //     carbon_g: 20,
+    //     country: "UK",
+    //   }
+    // ]
+
+    // return of(journeys);
   }
 }

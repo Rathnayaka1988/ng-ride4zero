@@ -1,7 +1,14 @@
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { GoogleMap } from '@angular/google-maps'
-import {interval} from "rxjs/internal/observable/interval";
 import { fireCircle } from '../circles';
+
+import { Observable } from 'rxjs';
+import { DataService } from '../data.service';
+import { Journey } from '../models';
+
+import {interval} from "rxjs/internal/observable/interval";
+import {startWith, switchMap} from "rxjs/operators";
+
 
 @Component({
   selector: 'app-map',
@@ -10,6 +17,7 @@ import { fireCircle } from '../circles';
 })
 export class MapComponent implements AfterViewInit {
   @ViewChild(GoogleMap, { static: false }) map: GoogleMap
+  @ViewChild('target') target: ElementRef;
 
   zoom = 3.8
 
@@ -39,9 +47,46 @@ export class MapComponent implements AfterViewInit {
 
   // scale = 1;
 
-  constructor() { }
+  journeyQueue: Journey[] = new Array<Journey>();
+  journeyIndex: number = 0;
+
+  constructor(private data: DataService) { }
 
   ngAfterViewInit(): void {
+
+    interval(6000)
+      .pipe(
+        startWith(0),
+        switchMap(() => this.data.getJourneys())
+      )
+      .subscribe((journeys: Journey[]) => {
+        console.log("MapComponent got journeys", journeys);
+        console.log("index", this.journeyIndex, "journeys legnth", journeys.length)
+        for (let i = this.journeyIndex; i < journeys.length; i++) {
+          console.log("Pushing to queue", journeys[i])
+          this.journeyQueue.push(journeys[i]);
+        }
+
+        this.journeyIndex = journeys.length;
+        
+      });
+
+      interval(1000)
+      .subscribe(() => {
+        console.log("Queue size", this.journeyQueue.length);
+        const j = this.journeyQueue.shift();
+        console.log("Queue size after shift", this.journeyQueue.length);
+        
+        if (j) {
+          fireCircle(this.target.nativeElement, 0, 0, j.distance_m);
+        }
+        
+      });
+
+
+
+
+
     // let poly = new google.maps.Polygon({
     //   paths: this.delims,
     //   strokeColor: '#FF0000',

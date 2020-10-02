@@ -1,4 +1,4 @@
-<div class='container' (click)='onClick($event)'>
+<div #target class='container'>
     <div class="spacer"></div>
     <google-map
         height="500px"
@@ -7,6 +7,7 @@
         [center]="center"
         [options]="options"
         class='spacer8'
+        (click)='onClick($event)'
         >
     </google-map>
     <div class="spacer"></div>

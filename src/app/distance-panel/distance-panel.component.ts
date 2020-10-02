@@ -25,7 +25,7 @@ export class DistancePanelComponent implements OnInit {
         switchMap(() => this.data.getTotals())
       )
       .subscribe(totals => {
-        console.log("DistancePanelComponent got totals", totals);
+        //console.log("DistancePanelComponent got totals", totals);
         this.value = totals.distance_m;
       });
   }

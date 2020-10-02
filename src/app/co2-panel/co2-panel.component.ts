@@ -24,7 +24,7 @@ export class Co2PanelComponent implements OnInit {
         switchMap(() => this.data.getTotals())
       )
       .subscribe(totals => {
-        console.log("Co2PanelComponent got totals", totals);
+        //console.log("Co2PanelComponent got totals", totals);
         this.value = totals.carbon_g;
       });
   }
