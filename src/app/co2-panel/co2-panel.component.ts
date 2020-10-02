@@ -25,7 +25,7 @@ export class Co2PanelComponent implements OnInit {
       )
       .subscribe(totals => {
         //console.log("Co2PanelComponent got totals", totals);
-        this.value = totals.carbon_g;
+        this.value = Math.round(totals.carbon_g);
       });
   }
 
